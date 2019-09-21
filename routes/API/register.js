@@ -8,7 +8,7 @@ router.route("/register")
 // Matches with "/api//:id"
 router
   .route("/:id")
-    .put(controller.update)
+  .put(controller.update)
   .delete(controller.remove);
 
 module.exports = router;
