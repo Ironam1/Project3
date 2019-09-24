@@ -4,24 +4,27 @@ const changeMe = require("./changeme");
 const feedMe = require("./feedme");
 const login = require("./login");
 const register = require("./register");
+// const user = require("./user");
 const zzz = require("./zzz");
 
 
 // changeMe routes
-router.use("/changeme", changeMe);
+router.route("/", changeMe);
 // feedMe routes
-router.use("/feedMe", feedMe);
+router.route("/", feedMe);
 // login routes
-router.use("/login", login);
+router.route("/", login);
 // register routes
-router.use("/register", register);
+router.route("/", register);
+// user routes
+// router.route("/", user);
 // zzz routes
-router.use("/zzz", zzz);
+router.route("/", zzz);
 
 
 // For anything else, render the html page
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
-});
+// router.use(function(req, res) {
+//   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+// });
 
 module.exports = router;
