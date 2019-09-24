@@ -6,6 +6,6 @@ const feedMeSchema = new Schema({
   details: String
 });
 
-const Feed = mongoose.model("Book", feedMeSchema);
+const Feed = mongoose.model("feedme", feedMeSchema);
 
 module.exports = Feed;

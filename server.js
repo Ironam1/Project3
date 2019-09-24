@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
-
 const PORT = process.env.PORT || 3001;
 
+// Define middleware
+app.use(express.urlencoded({ exteded: true }));
+app.use(express.json());
+// hits all routes in route directory
 const routes = require("./routes");
 app.use(routes);
 
@@ -12,9 +15,6 @@ app.use(logger("dev"));
 // Require database
 const mongoose = require("mongoose");
 
-// Define middleware
-app.use(express.urlencoded({ exteded: true }));
-app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
