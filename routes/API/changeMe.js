@@ -4,11 +4,11 @@ const controller = require("../../controllers/changemeController");
 // Matches with "/api/changeMe"
 router.route("/")
     .post(controller.create);
-
+    console.log("change API");
 // Matches with "/api/changeMe/:id"
-router
-  .route("/:id")
-  .put(controller.update)
-  .delete(controller.remove);
+// router
+//   .route("/:id")
+//   .put(controller.update)
+//   .delete(controller.remove);
 
 module.exports = router;

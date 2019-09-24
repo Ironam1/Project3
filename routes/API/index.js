@@ -1,4 +1,4 @@
-// const path = require("path");
+const path = require("path");
 const router = require("express").Router();
 const changeMe = require("./changeme");
 const feedMe = require("./feedme");
@@ -9,7 +9,7 @@ const zzz = require("./zzz");
 
 
 // changeMe routes
-router.use("/", changeMe);
+router.use("/changeme", changeMe);
 // feedMe routes
 router.use("/", feedMe);
 // login routes
