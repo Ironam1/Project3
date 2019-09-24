@@ -6,6 +6,6 @@ const changeMeSchema = new Schema({
   details: String
 });
 
-const Change = mongoose.model("Book", changeMeSchema);
+const Change = mongoose.model("changeMe", changeMeSchema);
 
 module.exports = Change;
