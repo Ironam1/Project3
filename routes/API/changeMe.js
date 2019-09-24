@@ -2,7 +2,7 @@ const router = require("express").Router();
 const controller = require("../../controllers/changemeController");
 
 // Matches with "/api/changeMe"
-router.route("/changeme")
+router.route("/")
     .post(controller.create);
 
 // Matches with "/api/changeMe/:id"

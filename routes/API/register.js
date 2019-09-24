@@ -2,7 +2,7 @@ const router = require("express").Router();
 const controller = require("../../controllers/controller");
 
 // Matches with "/api/register"
-router.route("/register")
+router.route("/")
     .post(controller.create);
     // .put(controller.update)
 
