@@ -22,6 +22,7 @@ module.exports = {
 // all creates:
   create: function(req, res) {
     console.log("req" + req.body)
+    console.log(db)
     db.Register
       .create(req.body)
       .then(dbModel => res.json(dbModel))
