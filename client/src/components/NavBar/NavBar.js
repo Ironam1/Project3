@@ -3,7 +3,7 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div className="container">
+    <div className="wrapper">
       <div className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="home" href="/">
           Login

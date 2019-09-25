@@ -26,9 +26,9 @@ class Eat extends Component {
     };
 
 
-    // function onChange(value) {
-    //   console.log(value && value.format(format));
-    // }
+    onChange = value => {
+      console.log(value && value.format(format));
+    }
 
     render() {
         return(
@@ -39,7 +39,7 @@ class Eat extends Component {
                 showSecond={false}
                 defaultValue={now}
                 className="xxx"
-                // onChange={onChange}
+                onChange={this.onChange}
                 format={format}
                 use12Hours
                 inputReadOnly
@@ -51,7 +51,12 @@ class Eat extends Component {
                 </div>
                 <textarea className="form-control"></textarea>
             </div>
-            <button type="button" className="btn btn-info" id="save" onClick={this.handleFormSubmit}>Save</button>
+            <button type="button" 
+                    className="btn btn-info" 
+                    id="save" 
+                    onClick={this.handleFormSubmit}
+                    value={this.state.feed}
+                    >Save</button>
         </div>
     )};
 }

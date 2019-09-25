@@ -1,3 +1,20 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@zfdunn 
+2
+10Ironam1/Project3
+ Code Issues 16 Pull requests 1 Projects 1 Wiki Security Insights
+Project3/client/src/pages/sleep.js
+@conniepope conniepope button click event taking in inputs
+1697ea9 2 days ago
+60 lines (50 sloc)  1.48 KB
+  
 import React, { Component } from "react";
 import "./style.css";
 
@@ -20,9 +37,9 @@ class Sleep extends Component {
     render() {
         return (
         <div class="container">
-            <h2>Zzzzz</h2>
+            <h2>Sleep</h2>
 
-            <h5>Asleep</h5>
+            <h6>Asleep</h6>
             <TimePicker
                 showSecond={false}
                 defaultValue={now}
@@ -31,11 +48,11 @@ class Sleep extends Component {
                 format={format}
                 use12Hours
                 inputReadOnly
-            />,
+            />
 
-            <h5>to</h5>
+            <h6>to</h6>
 
-            <h5>Awake</h5>
+            <h6>Awake</h6>
             <TimePicker
                 showSecond={false}
                 defaultValue={now}
@@ -44,7 +61,7 @@ class Sleep extends Component {
                 format={format}
                 use12Hours
                 inputReadOnly
-            />,
+            />
 
             <div class="input-group">
                 <div class="input-group-prepend">

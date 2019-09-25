@@ -1,14 +1,13 @@
 import axios from "axios";
 
-
 export default {
-  
   // Gets all info
   getFeed: function() {
     return axios.get("/api/feedMe/");
   },
-  getChange: function() {
-    return axios.get("/api/changeMe/");
+  getChangeTime: function() {
+    console.log("API.js")
+    return axios.post("/api/change/");
   },
   getZzz: function() {
     return axios.get("/api/zzz/");
@@ -16,12 +15,11 @@ export default {
 
   // Saves email & password to database
   saveLogin: function() {
-    return axios.create("/api/login")
+    return axios.post("/api/login");
   },
 
   // Saves time & details
   feedMe: function() {
-    return axios.create("/api/feedMe")
+    return axios.post("/api/feedMe");
   }
 };
-
