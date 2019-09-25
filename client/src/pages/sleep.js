@@ -1,20 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@zfdunn 
-2
-10Ironam1/Project3
- Code Issues 16 Pull requests 1 Projects 1 Wiki Security Insights
-Project3/client/src/pages/sleep.js
-@conniepope conniepope button click event taking in inputs
-1697ea9 2 days ago
-60 lines (50 sloc)  1.48 KB
-  
 import React, { Component } from "react";
 import "./style.css";
 
