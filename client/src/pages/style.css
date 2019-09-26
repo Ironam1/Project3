@@ -1,52 +1,14 @@
-.jumbotron {
-    background-color: #71B7AA;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    /* font-family: 'Pacifico', cursive; */
-}
-
-body {
-    background-color: #DEC8AA;
-    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-}
-
-.btn {
-    background-color: #2C2827;
-    border: 1px solid #71B7AA;
-    margin-bottom: 20px;
-
-}
-
-.btn:hover {
-    background-color: #71B7AA;
-}
-
-.footer {
-    background-color: #71B7AA;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    width: 100%;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-}
-
-h1, h2 {
-    /* font-family: 'Barriecito', cursive; */
-    font-family: 'Great Vibes', cursive;
-
-}
-
-.input-group-text {
-    background-color: #71B7AA;
-    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
-    color: #2C2827;
-}
-
-
-
-#header {
-    height: 200px;
+.input-group {
+    margin: 20px 0;
 }
 
 h2 {
-    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.log {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    color: #656B71;
 }
