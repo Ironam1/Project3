@@ -9,7 +9,7 @@ const zzz = require("./zzz");
 
 
 // changeMe routes
-router.use("/changeme", changeMe);
+router.use("/", changeMe);
 // feedMe routes
 router.use("/", feedMe);
 // login routes
