@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const routes = require("./routes");
 const logger = require("morgan");
