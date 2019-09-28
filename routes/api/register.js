@@ -1,5 +1,9 @@
+const express = require("express");
 const router = require("express").Router();
 const registerController = require("../../controllers").registerController;
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../../"
 
 // Matches with "/api/books"
 router.route("/").post(registerController.create);
