@@ -1,13 +1,13 @@
 const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-
 //load input validation 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 //load User model
-const User = require("../../models/user");
+const User = require("../../models/register");
 
 //@route POST api/users/register
 //@route Register user
@@ -19,14 +19,15 @@ router.post("/register",(req,res) => {
     if (!isValid){ 
         return res.status(400).json(errors);
     }
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({ user: req.body.user }).then(user => {
         if (user) {
-            return res.status(400).json({ email: "Email already exists" });
+            return res.status(400).json({ user: "Email already exists" });
         } else {
             const newUser = newUser({
-                name: req.body.name,
-                email: req.body.email,
-                password: req.body.password
+                user: { type: String, required: true, unique: true },
+                password: { type: String, required: true, unique: true },
+                babyname: { type: String, required: true },
+                babyimg: String
             });
 // hash password before saving in database
             bcrypt.genSalt(10, (err, salt) => {
@@ -45,17 +46,17 @@ router.post("/register",(req,res) => {
 //@route POST api/users
 // login user and return JWT token
 //@access Public
-route.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
 //form validation
     const { errors, isValid } = validateLoginInput(req.body);
 //check validation
     if (!isValid){
         return res.status(400).json(errors);
     }
-    const email = req.body.email;
+    const user = req.body.user;
     const password = req.body.password;
 //finds user by email 
-    User.findOne({ email }).then(user => {
+    User.findOne({ user }).then(user => {
 //checks if user exists
         if (!user){
             return res.status(404).json({ emailnotfound: "Email not found" });

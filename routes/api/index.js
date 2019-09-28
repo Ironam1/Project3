@@ -18,5 +18,5 @@ router.use("/register", register);
 // // zzz routes
 router.use("/sleep", sleep);
 // users route
-router.use("/users"), users;
+router.use("/users", users);
 module.exports = router;

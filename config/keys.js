@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "babytracker",
-    secretOrKey: "secret"
+    mongoURI: process.env.MONGODB_URI || "mongodb://localhost/babytracker",
+    secretOrKey: "baby"
 };
