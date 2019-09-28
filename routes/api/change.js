@@ -3,7 +3,7 @@ const changeController = require("../../controllers").changeController;
 
 // Matches with "/api/books"
 router.route("/").post(changeController.create);
-
+router.route("/").get(changeController.findAll);
 // Matches with "/api/books/:id"
 // router.route("/:id")
 //   .get(controller.findById)

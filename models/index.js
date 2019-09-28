@@ -2,6 +2,5 @@ module.exports = {
   Feed: require("./feedMe"),
   Change: require("./changeMe"),
   Sleep: require("./sleep"),
-  User: require("./register"),
-  Date: require("./date")
+  User: require("./register")
 };

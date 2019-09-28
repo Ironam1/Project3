@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const feedMeSchema = new Schema({
   user: { type: String, required: true },
-  date: { type: String, required: true },
+  date: { type: Date, required: true },
   time: { type: String, required: true, unique: true },
   details: String
 });

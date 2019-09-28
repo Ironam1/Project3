@@ -5,6 +5,7 @@ const feedMe = require("./feed");
 // const login = require("./login");
 const register = require("./register");
 const sleep = require("./sleep");
+const users = require("./users");
 
 // changeMe routes
 router.use("/change", changeMe);
@@ -16,5 +17,6 @@ router.use("/feedMe", feedMe);
 router.use("/register", register);
 // // zzz routes
 router.use("/sleep", sleep);
-
+// users route
+router.use("/users"), users;
 module.exports = router;

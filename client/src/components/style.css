@@ -4,9 +4,10 @@
     /* font-family: 'Pacifico', cursive; */
 }
 
-body {
+html, body {
     background-color: #DEC8AA;
     background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    height: 100%;
 }
 
 .btn {
@@ -25,8 +26,9 @@ body {
     background-image: url("https://www.transparenttextures.com/patterns/paper.png");
     width: 100%;
     padding: 20px;
-    position: fixed;
-    bottom: 0;
+    clear: both;
+    position:fixed;
+    bottom:0;
 }
 
 h1,

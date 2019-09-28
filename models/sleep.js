@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const sleepSchema = new Schema({
   user: { type: String, required: true },
-  date: { type: String, required: true },
+  date: { type: Date, required: true },
   startTime: { type: String, required: true, unique: true },
   endTime: { type: String, required: true },
   details: String

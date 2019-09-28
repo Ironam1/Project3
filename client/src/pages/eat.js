@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import "./style.css";
-
-import "rc-time-picker/assets/index.css";
+import Date from "../components/DatePicker";
+import API from "../utils/API";
 // import ReactDom from 'react-dom';
 import moment from "moment";
 
@@ -27,14 +26,19 @@ class Eat extends Component {
       .catch(err => console.log("Error" + err));
   };
 
-  onChange = value => {
-    console.log(value && value.format(format));
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   render() {
     return (
       <div className="container">
         <h2>Feed Me</h2>
+        <Date />
+        <p></p>
         <Timer />
 
         <div className="input-group">
