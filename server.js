@@ -53,7 +53,7 @@ app.use(passport.initialize());
 // zd requiring passport config
 require("./config/passport")(passport);
 // zd requiring passport route
-app.use("/api/users", users);
+app.use("/api/users", User);
 //zd end
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

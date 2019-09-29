@@ -53,7 +53,7 @@ router.post("/login", (req, res) => {
     if (!isValid){
         return res.status(400).json(errors);
     }
-    const user = req.body.user;
+    const User = req.body.User;
     const password = req.body.password;
 //finds user by email 
     User.findOne({ user }).then(user => {
@@ -85,4 +85,4 @@ router.post("/login", (req, res) => {
         });
     }); 
 });
-module.exports = router;
+module.exports = User;
