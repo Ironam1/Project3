@@ -5,16 +5,16 @@ module.exports = {
     db.Feed.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+  findAll: function(req, res) {
+    db.Feed.find({
+      user: req.body.user,
+      date: req.body.date
+    })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-  //   ,
-  //   findAll: function(req, res) {
-  //     db.Feed.find()
-  //       .$where(function() {
-  //         return this.user === req.body.user && this.date === req.body.date;
-  //       })
-  //       .then(dbModel => res.json(dbModel))
-  //       .catch(err => res.status(422).json(err));
-  //   },
   //   deleteOne: function(req, res) {
   //     db.Feed.deleteOne({
   //       user: req.body.user,

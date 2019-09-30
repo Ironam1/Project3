@@ -1,22 +1,50 @@
 const path = require("path");
 const router = require("express").Router();
-const changeMe = require("./change");
-const feedMe = require("./feed");
-// const login = require("./login");
-const register = require("./register");
-const sleep = require("./sleep");
-const users = require("./users");
-
-// changeMe routes
-router.use("/change", changeMe);
-// feedMe routes
-router.use("/feedMe", feedMe);
-// // login routes
+//===================================================
+//      route dependencies
+const changeRoute = require("./change");
+const feedRoute = require("./feed");
+//      ?????
+// const loginRoute = require("./users");
+//===================================================
+// adding dailyLog route
+const dailyLogRoute = require('./dailyLog');
+//===================================================
+const registerRoute = require("./register");
+//===================================================
+const sleepRoute = require("./sleep");
+//===================================================
+// const usersRoute = require("./register");
+//===================================================
+//===================================================
+//     **all corresponding routes**
+//===================================================
+//===================================================
+//      change router
+router.use("/change", changeRoute);
+//===================================================
+//      feed router
+router.use("/feed", feedRoute);
+//===================================================
+//      login router
 // router.use("/login", login);
-// // register routes
-router.use("/register", register);
-// // zzz routes
-router.use("/sleep", sleep);
-// users route
-router.use("/users", users);
+//===================================================
+//      register router
+router.use("/register", registerRoute);
+//===================================================
+//      sleep router
+router.use("/sleep", sleepRoute);
+//===================================================
+//      ??????
+//      users route
+// router.use("/users", usersRoute);
+//===================================================
+//      dailyLogRoute
+router.use('/dailyLog', dailyLogRoute);
+//===================================================
+// else if ==> render react html 
+router.use(function(req, res) {
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+});
+//===================================================
 module.exports = router;

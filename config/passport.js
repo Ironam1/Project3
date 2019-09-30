@@ -1,23 +1,29 @@
-const JwtStategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const mongoose = require("mongoose");
-const User = mongoose.model("user");
-const keys = require("./keys");
+//==============================================
+//==============================================
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const db = require('../models');
 
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = keys.secretOrKey;
+passport.use(new LocalStrategy(
+    { usernameField: 'email' },
+    function(user, password, done){
+        db.User.findOne({ 
+            where: { user: user }
+        }).then(function(dbUser){
+            if (!dbUser){
+                return done(null, false, {
+                    message: 'Incorrect email.'
+                });
+            }
+        return done(null, dbUser);
+        });
+    }
+});
 
-module.exports = passport => {
-    passport.use(
-        new JwtStategy(opts, (jwt_payload, done) => {
-            User.findById(jwt_payload.id)
-            .then(user => {
-                if (user){
-                    return done(null, user);
-                }
-                return done(null, false);
-            }).catch(err => console.log(err));
-        })
-    );
-};
+passport.serializeUser(function(user, cb){
+    cb(null, user);
+});
+passport.deserializeUser(function(obj, cb){
+    cb(null, obj);
+});
+module.exports = passport;
