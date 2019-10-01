@@ -3,12 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const userSchema = new Schema({
-  user: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true, unique: true },
-  //====================================
-  // does password2 need to be required??
-  // does 'match: this.password' make sense??
-  password2: { type: String, required: true, match: this.password },
+  password2: { type: String, required: true },
   babyname: { type: String, required: true },
   babyimg: String,
   change: {},

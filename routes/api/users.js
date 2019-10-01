@@ -11,9 +11,9 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 //register 
 router.post('/register', (req, res) => {
-    const { user, password, password2, babyname, babyimg } = req.body;
+    const { username, password, password2, babyname, babyimg } = req.body;
     let errors = [];
-    if (! user || !password || !password2 || !babyname || !babyimg ) {
+    if (! username || !password || !password2 || !babyname || !babyimg ) {
         errors.push({ msg: 'Please enter all fields'});
     }
     if (password != password2) {
@@ -25,20 +25,20 @@ router.post('/register', (req, res) => {
     if (errors.length > 0) {
         res.render('register', {
             errors, 
-            user, 
+            username, 
             password, 
             password2, 
             babyname,
             babyimg 
         });
     } else {
-        User.findOne({ user: user })
+        User.findOne({ username: user })
             .then(user => {
                 if (user) {
                     errors.push({ msg: 'Email or Username already exists :-('});
                     res.render('register', {
                         errors, 
-                        user, 
+                        username, 
                         password,
                         password2,
                         babyname,
@@ -46,7 +46,7 @@ router.post('/register', (req, res) => {
                     })
                 } else {
                     const newUser = new User({
-                        user, 
+                        username, 
                         password,
                         babyname,
                         babyimg
@@ -70,8 +70,8 @@ router.post('/register', (req, res) => {
 //login
 router.post('/login', (req,res,next) => {
     passport.authenticate('local'), {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
+        successRedirect: '/login',
+        failureRedirect: '/register',
         failureFlash: true
     }(req, res, next);
 });
@@ -79,6 +79,6 @@ router.post('/login', (req,res,next) => {
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You have successfully logged out');
-    res.redirect('/users/login');
+    res.redirect('/login');
 });
 module.exports = router;

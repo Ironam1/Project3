@@ -8,7 +8,7 @@ module.exports = function(passport){
         new LocalStrategy ({ usernameField: 'user' }, (user, password, done) =>{
         //match user
             User.findOne({
-                user: user 
+                username: user 
             }).then(user => {
                 if (!user) {
                     return done(null, false, {message: 'That email is not registered' });
