@@ -4,12 +4,13 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   user: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   babyname: { type: String, required: true },
-  babyimg: String,
-  change: {},
-  sleep: {},
-  eat: {}
+  date: { type: Date, default: Date.now }
+  // babyimg: String,
+  // change: {},
+  // sleep: {},
+  // eat: {}
 });
 
 const User = mongoose.model("user", userSchema);

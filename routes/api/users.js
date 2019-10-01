@@ -1,91 +1,84 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
-const path = require('path');
-//load input validation 
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
-//load User model
-const User = require("../../models/register");
-const isAuthenticated = require('../../validation/passport');
-
-
-//@route POST api/users/register
-//@route Register user
-//@access Public 
-router.post("/register",(req,res) => {
-//form validation
-    const { errors, isValid } = validateRegisterInput(req.body);
-//check validation
-    if (!isValid){ 
-        return res.status(400).json(errors);
+const brypt = require('bcryptjs');
+const passport = require('passport')
+// load user model
+const User = require('../../models/user');
+const { forwardAuthenticated } = require('../../validation/config/auth');
+//login page
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+//register page
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+//register 
+router.post('/register', (req, res) => {
+    const { user, password, password2, babyname, babyimg } = req.body;
+    let errors = [];
+    if (! user || !password || !password2 || !babyname || !babyimg ) {
+        errors.push({ msg: 'Please enter all fields'});
     }
-    User.findOne({ user: req.body.user }).then(user => {
-        if (user) {
-            return res.status(400).json({ user: "Email already exists" });
-        } else {
-            const newUser = newUser({
-                user: { type: String, required: true, unique: true },
-                password: { type: String, required: true, unique: true },
-                babyname: { type: String, required: true },
-                babyimg: String
-            });
-// hash password before saving in database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser.save()
-                    .then(user => res.json(user))
-                    .catch(err => console.log(err));
+    if (password != password2) {
+        errors.push({ msg: 'Passwords do not match, please resubmit'});
+    }
+    if (password.length < 6) {
+        errors.push({ msg: 'Password must be at least 6 characters long'});
+    }
+    if (errors.length > 0) {
+        res.render('register', {
+            errors, 
+            user, 
+            password, 
+            password2, 
+            babyname,
+            babyimg 
+        });
+    } else {
+        User.findOne({ user: user })
+            .then(user => {
+                if (user) {
+                    errors.push({ msg: 'Email or Username already exists :-('});
+                    res.render('register', {
+                        errors, 
+                        user, 
+                        password,
+                        password2,
+                        babyname,
+                        babyimg
+                    })
+                } else {
+                    const newUser = new User({
+                        user, 
+                        password,
+                        babyname,
+                        babyimg
+                    });
+                }
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        newUser.password = hash;
+                        newUser
+                        .save()
+                        .then(user => {
+                            req.flash('succes_msg', 'You are now registered, and can log in :-)');
+                            res.redirect('/users/login');
+                        }).catch(err => console.log(err));
+                    });
                 });
             });
         }
     });
+//login
+router.post('/login', (req,res,next) => {
+    passport.authenticate('local'), {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    }(req, res, next);
 });
-
-//@route POST api/users
-// login user and return JWT token
-//@access Public
-router.post("/login", (req, res) => {
-//form validation
-    const { errors, isValid } = validateLoginInput(req.body);
-//check validation
-    if (!isValid){
-        return res.status(400).json(errors);
-    }
-    const User = req.body.User;
-    const password = req.body.password;
-//finds user by email 
-    User.findOne({ user }).then(user => {
-//checks if user exists
-        if (!user){
-            return res.status(404).json({ emailnotfound: "Email not found" });
-        }
-//checks password
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch){
-        //user matched
-        // create JWT Payload
-            const payload = {
-                id: user.id,
-                name: user.name 
-            };
-        //sign token
-            jwt.sign(payload, keys.secretOrKey, {
-                expiresIn: 31556926 //1 year in seconds
-            },
-            (err, token) => {
-                res.json({ success: true, token: "Bearer " + token });
-            }
-        );
-            } else { return res
-                .status(400)
-                .json({passwordincorrect: "Password incorrect" });
-            }
-        });
-    }); 
+//logout
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You have successfully logged out');
+    res.redirect('/users/login');
 });
-module.exports = User;
+module.exports = router;
