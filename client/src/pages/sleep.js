@@ -23,8 +23,8 @@ class Sleep extends Component {
 
     API.getSleep({
       user: "connie@mail.com",
-      date: "1999-01-01 05:00:00.000Z", 
-      startTime: this.state.value1.format("hh:mm a"),
+      date: "1999-01-01 05:00:00.000Z",
+      starttime: this.state.value1.format("hh:mm a"),
       endTime: this.state.value2.format("hh:mm a"),
       details: this.state.details
     }).then(res =>
@@ -68,7 +68,6 @@ class Sleep extends Component {
           inputReadOnly
           placeholder="awake time"
         />
-
 
         <div className="input-group">
           <div className="input-group-prepend">
