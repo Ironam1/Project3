@@ -4,7 +4,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../../validation/
 //welcome page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 //dashboard 
-router.get('/dashboard', ensureAuthenticated, (req, res) ==>
+router.get('/dashboard', ensureAuthenticated, (req, res) => 
 res.render('dashboard', {
     user: req.user
 }));
@@ -34,7 +34,7 @@ router.use("/change", changeRoute);
 //      feed router
 router.use("/feed", feedRoute);
 //===================================================
-     login router
+    //  login router
 router.use("/login", login);
 //===================================================
 //      register router
