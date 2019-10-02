@@ -1,5 +1,5 @@
 a {
-    margin: 0 15px;
+    margin: 0 10px;
     color: #2C2827;
 }
 
@@ -9,4 +9,11 @@ a:hover {
 
 .navbar {
     border-radius: 5px;
+    margin: 20px 0;
+}
+
+@media (max-width: 575.98px) {
+    a {
+        margin: 0 5px;
+    }
 }

@@ -5,37 +5,53 @@ import "rc-time-picker/assets/index.css";
 import moment from "moment";
 import Timer from "../components/TimePicker";
 import API from "../utils/API";
-import Date from "../components/DatePicker";
+import Container from "../components/Container/container";
 
-// import PropTypes from 'prop-types';
-
-// import App from "../App"
-
-const format = "hh:mm a";
+// const format = "hh:mm a";
 
 class Change extends Component {
   state = {
-    // user: "",
-    // date: "",
+    user: "connie@mail.com",
+    date: "1999-01-01 05:00:00.000Z",
     value: moment(),
-    details: ""
+    details: "",
+    change: []
   };
+
+  componentDidMount = () => {
+
+    const user = {
+      user: "connie@mail.com",
+      date: "1999-01-01 05:00:00.000Z",
+    }
+
+    API.getChange(user)
+        .then(res => {
+          this.setState({ change: res.data })
+          console.log(res.data)
+        })
+        .catch(err => console.log("Error" + err));
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
 
-    API.getChangeTime({
+    API.postChange({
+      user: "connie@mail.com",
+      date: "1999-01-01 05:00:00.000Z",
       time: this.state.value.format("hh:mm a"),
       details: this.state.details
     }).then(res =>
       this.setState({
+        date: res.data,
         value: res.data,
         details: ""
       })
     );
-
-    console.log("time: " + this.state.value.format("hh:mm:ss"));
+    console.log("date: " + this.state.date)
     console.log("details: " + this.state.details);
+    window.location.reload()
+
   };
 
   handleInputChange = event => {
@@ -49,7 +65,7 @@ class Change extends Component {
     return (
       <div className="container">
         <h2>Change Me</h2>
-        <Date />
+        <DatePicker />
         <p></p>
         <Timer />
 
@@ -73,6 +89,11 @@ class Change extends Component {
         >
           Save
         </button>
+
+        <Container
+          itemList={this.state.change}
+          title="Changes"> 
+        </Container>
       </div>
     );
   }

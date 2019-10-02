@@ -1,5 +1,6 @@
 const path = require("path");
 const router = require("express").Router();
+<<<<<<< HEAD
 //===================================================
 //      route dependencies
 const changeroute = require("./change");
@@ -55,4 +56,23 @@ router.get('/', ensureAuthenticated, (req, res) =>
 res.render('login', {
     username: req.user
 }));
+=======
+const changeMe = require("./change");
+const feedMe = require("./feed");
+// const login = require("./login");
+const register = require("./register");
+const sleep = require("./sleep");
+
+// changeMe routes
+router.use("/change", changeMe);
+// feedMe routes
+router.use("/feed", feedMe);
+// // login routes
+// router.use("/login", login);
+// // register routes
+router.use("/register", register);
+// // zzz routes
+router.use("/sleep", sleep);
+
+>>>>>>> a90437bdd8feab36bc265ee64d4d713a4d101a34
 module.exports = router;

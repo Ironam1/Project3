@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { start } from "repl";
-// CSS Modules, react-datepicker-cssmodules.css
 
 class DatePick extends Component {
   state = {
@@ -10,7 +8,7 @@ class DatePick extends Component {
   };
 
   handleChange = date => {
-    // console.log(startDate);
+    // console.log(this.state.startDate);
     // if (startDate === this.state.startDate) return;
     this.setState({
       startDate: date
@@ -20,8 +18,10 @@ class DatePick extends Component {
   render() {
     return (
       <DatePicker
+        name="date"
         selected={this.state.startDate}
         onChange={this.handleChange}
+        id="datepicker"
       />
     );
   }

@@ -7,14 +7,13 @@
 html, body {
     background-color: #DEC8AA;
     background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-    height: 100%;
 }
+
 
 .btn {
     background-color: #2C2827;
     border: 1px solid #71B7AA;
     margin-bottom: 20px;
-
 }
 
 .btn:hover {
@@ -25,14 +24,13 @@ html, body {
     background-color: #71B7AA;
     background-image: url("https://www.transparenttextures.com/patterns/paper.png");
     width: 100%;
-    padding: 20px;
+    padding: 20px 0px 5px 20px;
     clear: both;
-    position:fixed;
-    bottom:0;
+    position: relative;
+    bottom: 0;
 }
 
-h1,
-h2 {
+h1, h2 {
     /* font-family: 'Barriecito', cursive; */
     font-family: 'Great Vibes', cursive;
 
@@ -44,12 +42,31 @@ h2 {
     color: #2C2827;
 }
 
-
-
 #header {
     height: 200px;
 }
 
 h2 {
     margin-top: 70px;
+}
+
+label {
+    color: #2C2827;
+    font-size: 1em;
+}
+
+.navbutton {
+    margin: 20px 10px;
+    width: 200px;
+
+}
+
+@media (max-width: 575.98px) {  
+    h1 {
+        margin: 0;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
 }

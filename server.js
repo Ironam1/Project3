@@ -18,6 +18,7 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 //express bodyParser
 app.use(express.urlencoded({ extended: true }));
+<<<<<<< HEAD
 //express session
 app.use(session({
     secret: 'baby',
@@ -35,6 +36,37 @@ app.use(function(req, res, next){
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     next();
+=======
+app.use(express.json());
+app.use(routes);
+app.use(logger("dev"));
+
+// Require database
+const mongoose = require("mongoose");
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// Connect to the Mongo DB
+mongoose
+.connect(process.env.MONGODB_URI || "mongodb://babytracker:babytracker4@ds127044.mlab.com:27044/heroku_lpcfhcpj", {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
+  .then(
+    () => {
+      console.log("Database is connected");
+    },
+    err => {
+      console.log("Cannot connect to database" + err);
+    }
+  );
+
+app.listen(PORT, () => {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+>>>>>>> a90437bdd8feab36bc265ee64d4d713a4d101a34
 });
 //??????????
 //routes

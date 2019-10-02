@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 import API from "../utils/API";
+import { Link } from "react-router-dom";
+
 
 class Register extends Component {
   state = {
@@ -103,12 +105,14 @@ class Register extends Component {
               />
           </div>
 
-          <button type="submit" 
-                  className="btn btn-info"
-                  onClick={this.handleFormSubmit}
-                  >
-                  Register
-          </button>
+          <Link to="/start" className={window.location.pathname === "/start"}>
+            <button type="submit" 
+                    className="btn btn-info"
+                    // onClick={this.handleFormSubmit}
+            >
+              Register
+            </button>
+          </Link>
         </form>
       </div>
     );

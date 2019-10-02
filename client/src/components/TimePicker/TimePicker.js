@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import "./TimePicker.css";
@@ -25,6 +25,7 @@ class Timer extends Component {
         use12Hours
         inputReadOnly
         name="value"
+        id="timepicker"
       />
     );
   }

@@ -1,19 +1,31 @@
 import axios from "axios";
 
 export default {
-  // Gets all info
+
+  // GETS INFO
   getFeed: function(feed) {
-    return axios.get("/api/feedMe/", feed);
+    return axios.get("/api/feed", feed);
   },
-  getChangeTime: function(change) {
+  getChange: function(change) {
+    console.log("API.js");
+    return axios.get("/api/change/", change);
+  },
+  getSleep: function(sleep) {
+    return axios.get("/api/sleep/", sleep);
+  },
+
+  // POSTS INFO
+  postChange: function(change) {
     console.log("API.js");
     return axios.post("/api/change/", change);
   },
-  getZzz: function(sleep) {
-    return axios.get("/api/zzz/", sleep);
+  postFeed: function(feed) {
+    return axios.post("/api/feed/", feed);
   },
-  // Saves email & password to database
-  saveLogin: function(login) {
+  postSleep: function(sleep) {
+    return axios.post("/api/sleep/", sleep);
+  },
+  login: function(login) {
     return axios.post("/api/login", login);
   },
   register: function(register) {

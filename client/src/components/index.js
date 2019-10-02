@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Start from "./start";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import Start from "./start";
 import "./style.css";
+
 
 class Login extends Component {
   state = {
@@ -15,7 +16,7 @@ class Login extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // if (this.state.user && this.state.password) {
-        API.saveLogin({
+        API.login({
             user: this.state.user,
             password: this.state.password,
         })
@@ -32,6 +33,8 @@ class Login extends Component {
     // }
     console.log("user: " + this.state.user);
     console.log("password: " + this.state.password);
+    
+
   };
 
   // handleInputChange = event => {
@@ -54,7 +57,7 @@ class Login extends Component {
         <h2>Login</h2>
         <form>
           <div className="form-group">
-            <label>user address</label>
+            <label>Email or User Name</label>
             <input
               type="user"
               className="form-control"
@@ -85,7 +88,7 @@ class Login extends Component {
           <Link to="/start" className={window.location.pathname === "/start"}>
             <button type="submit" 
                     className="btn btn-info"
-                    onClick={this.handleFormSubmit}
+                    // onClick={this.handleFormSubmit}
             >
               Submit
             </button>

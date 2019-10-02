@@ -1,29 +1,55 @@
 import React, { Component } from "react";
 import "./style.css";
-import Date from "../components/DatePicker";
-import API from "../utils/API";
-// import ReactDom from 'react-dom';
+import DatePicker from "../components/DatePicker";
+import "rc-time-picker/assets/index.css";
 import moment from "moment";
-
 import Timer from "../components/TimePicker";
+import API from "../utils/API";
+import Container from "../components/Container/container";
 
 const format = "h:mm a";
-const now = moment()
-  .hour(0)
-  .minute(0);
 
 class Eat extends Component {
   state = {
-    feed: ""
+    user: "connie@mail.com",
+    date: "1999-01-01 05:00:00.000Z",
+    value: moment(),
+    details: "",
+    feed: [],
   };
+
+  componentDidMount = () => {
+
+    const user = {
+      user: "connie@mail.com",
+      date: "1999-01-01 05:00:00.000Z"
+    }
+
+    API.getFeed(user)
+        .then(res => {
+          this.setState({ feed: res.data })
+          console.log(res.data)
+        })
+        .catch(err => console.log("Error" + err));
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("submitted");
 
-    API.feedMe()
-      .then(res => this.setState({ feed: res.data }))
-      .catch(err => console.log("Error" + err));
+    API.postFeed({
+      user: "connie@mail.com",
+      date: "1999-01-01 05:00:00.000Z", 
+      time: this.state.value.format(format),
+      details: this.state.details
+    }).then(res =>
+      this.setState({
+        value: res.data,
+        details: ""
+      })
+    );
+    console.log("value " + this.state.value.format(format))
+    console.log("details: " + this.state.details);
+    window.location.reload()
   };
 
   handleInputChange = event => {
@@ -37,7 +63,7 @@ class Eat extends Component {
     return (
       <div className="container">
         <h2>Feed Me</h2>
-        <Date />
+        <DatePicker />
         <p></p>
         <Timer />
 
@@ -45,17 +71,28 @@ class Eat extends Component {
           <div className="input-group-prepend">
             <label className="input-group-text">Details</label>
           </div>
-          <textarea className="form-control"></textarea>
+          <textarea
+            className="form-control"
+            id="details"
+            name="details"
+            onChange={this.handleInputChange}
+          ></textarea>
         </div>
+
         <button
           type="button"
           className="btn btn-info"
           id="save"
           onClick={this.handleFormSubmit}
-          value={this.state.feed}
+          
         >
           Save
         </button>
+
+        <Container
+          itemList={this.state.feed}
+          title="Feed"> 
+        </Container>
       </div>
     );
   }
