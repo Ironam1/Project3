@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/babytracker');
 const db = mongoose.connection;
 //=============================
 const routes = require('./routes/index');
-const users = require('./routes/api/users');
+const users = require('./routes/api/users2');
 //=============================
 // initialize app
 const app = express();
