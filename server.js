@@ -1,9 +1,13 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const routes = require("./routes");
 const logger = require("morgan");
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
+app.set('port', (process.env.PORT || 1337));
+
 
 // Define middleware
 app.use(express.urlencoded({ extended: true }));
@@ -21,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Connect to the Mongo DB
 mongoose
-.connect(process.env.MONGODB_URI || "mongodb://babytracker:babytracker4@ds127044.mlab.com:27044/heroku_lpcfhcpj", {
+.connect(process.env.MONGODB_URI || "mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_SERVER}", {
     useNewUrlParser: true,
     useCreateIndex: true
   })
