@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "passport": "^0.4.0",
     "react": "^16.9.0",
     "react-datepicker": "^2.9.6",
     "react-dom": "^16.9.0",
