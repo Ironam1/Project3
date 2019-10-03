@@ -1,4 +1,6 @@
-const express = require('express');
+require('dotenv').config();
+
+const express = require("express");
 const app = express();
 const routes = require('./routes');
 const logger = require('morgan');
@@ -18,6 +20,8 @@ const mongoose = require('mongoose');
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
+
+app.use(routes);
 
 // Connect to the Mongo DB
 mongoose
