@@ -90,7 +90,8 @@ class Change extends Component {
           Save
         </button>
 
-        <Container itemList={this.state.change} title="Changes"></Container>
+        <Container itemList={this.state.change} title="Changes">
+        </Container>
       </div>
     );
   }

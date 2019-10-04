@@ -39,7 +39,7 @@ class Eat extends Component {
     API.postFeed({
       user: this.state.user,
       date: this.state.date,
-      time: this.state.value,
+      time: this.state.value.format("hh:mm a"),
       details: this.state.details
     }).then(res =>
       this.setState({
