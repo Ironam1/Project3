@@ -13,7 +13,7 @@ class Timer extends Component {
   };
 
   handleValueChange = value => {
-    // console.log(value && value.format(format));
+    console.log(value && value.format(format));
     this.setState({ value });
   };
 
@@ -22,13 +22,15 @@ class Timer extends Component {
     return (
       <TimePicker
         showSecond={false}
-        defaultValue={moment()}
+        defaultValue={moment(this.state.value)}
         className="xxx"
-        onChange={this.handleValueChange}
+        onChange={this.handleValueChange}   
         format={format}
         use12Hours
         inputReadOnly
         id="timepicker"
+        value={value}
+      
       />
     );
   }

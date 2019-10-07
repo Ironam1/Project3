@@ -56,7 +56,7 @@ class Sleep extends Component {
     console.log("endtime: " + this.state.value2.format(format));
     console.log("details: " + this.state.details);
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   handleInputChange = event => {

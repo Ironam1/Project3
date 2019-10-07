@@ -44,13 +44,14 @@ class Change extends Component {
     }).then(res =>
       this.setState({
         date: res.data,
-        value: res.data,
+        value: "",
         details: ""
       })
     );
     console.log("date: " + this.state.date);
+    console.log("time: " + this.state.value.format("hh:mm a"));
     console.log("details: " + this.state.details);
-    window.location.reload();
+    // window.location.reload();
   };
 
   handleInputChange = event => {
