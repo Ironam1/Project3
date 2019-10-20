@@ -8,12 +8,10 @@ import API from "../utils/API";
 import Container from "../components/Container/container";
 import NavBar from "../components/NavBar/NavBar";
 
-// const format = "h:mm a";
-
 class Eat extends Component {
   state = {
     user: "connie@mail.com",
-    date: "1999-01-01 05:00:00.000Z",
+    date: moment(),
     value: moment(),
     details: "",
     feed: []
@@ -28,11 +26,15 @@ class Eat extends Component {
     API.getFeed(user)
       .then(res => {
         this.setState({ feed: res.data });
-        console.log(res.data);
       })
       .catch(err => console.log("Error" + err));
   };
-
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
+  };
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
   handleFormSubmit = event => {
     event.preventDefault();
 
@@ -47,8 +49,12 @@ class Eat extends Component {
         details: ""
       })
     );
-    // console.log("value " + this.state.value.format("hh:mm a"));
+
     window.location.reload();
+  };
+
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
   };
 
   handleInputChange = event => {
@@ -56,7 +62,6 @@ class Eat extends Component {
     this.setState({
       [name]: value
     });
-    // console.log(value);
   };
 
   render() {
@@ -64,9 +69,9 @@ class Eat extends Component {
       <div className="container">
         <NavBar />
         <h2>Feed Me</h2>
-        <DatePicker />
+        <DatePicker onDateChange={this.DateChange} />
         <p></p>
-        <Timer />
+        <Timer onTimeChange={this.handleTimeChange} />
 
         <div className="input-group">
           <div className="input-group-prepend">

@@ -6,7 +6,6 @@ import DatePicker from "../components/DatePicker";
 import NavBar from "../components/NavBar/NavBar";
 import SleepContainer from "../components/SleepContainer/sleepContainer";
 
-
 class DailyLog extends Component {
   state = {
     user: "connie@mail.com",
@@ -14,60 +13,46 @@ class DailyLog extends Component {
     feed: [],
     sleep: [],
     change: []
-  }
+  };
 
   componentDidMount = () => {
-    console.log("mounted");
-    console.log(this.state.change)
-
     const user = {
       user: this.state.user,
-      date: this.state.date,
-    }
+      date: this.state.date
+    };
 
     API.getFeed(user)
       .then(res => {
-        this.setState({ feed: res.data })
-        console.log(res.data)
+        this.setState({ feed: res.data });
       })
       .catch(err => console.log("Error" + err));
 
     API.getSleep(user)
       .then(res => {
-        this.setState({ sleep: res.data })
+        this.setState({ sleep: res.data });
       })
       .catch(err => console.log("Error" + err));
 
     API.getChange(user)
       .then(res => {
-        this.setState({ change: res.data })
-        console.log(res.data)
+        this.setState({ change: res.data });
       })
       .catch(err => console.log("Error" + err));
-
   };
 
   render() {
-
-      return (
-  
-        <div className="container">
+    return (
+      <div className="container">
         <NavBar />
         <h2>Daily Log</h2>
         <DatePicker />
         <div className="log">
-          <Container
-            itemList={this.state.change}
-            title="Changes"> 
-          </Container>
+          <Container itemList={this.state.change} title="Changes"></Container>
           <SleepContainer
             itemList={this.state.sleep}
-            title="Sleep"> 
-          </SleepContainer>
-          <Container
-            itemList={this.state.feed}
-            title="Feed"> 
-          </Container>
+            title="Sleep"
+          ></SleepContainer>
+          <Container itemList={this.state.feed} title="Feed"></Container>
         </div>
       </div>
     );

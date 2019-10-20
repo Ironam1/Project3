@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
 import API from "../utils/API";
-// import { Link } from "react-router-dom";
 
 class Register extends Component {
   state = {
@@ -13,7 +12,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+
     API.register({
       user: this.state.user,
       password: this.state.password,
@@ -102,7 +101,6 @@ class Register extends Component {
             />
           </div>
 
-          {/* <Link to="/" className={window.location.pathname === "/"}> */}
           <button
             type="submit"
             className="btn btn-info"
@@ -110,7 +108,6 @@ class Register extends Component {
           >
             Register
           </button>
-          {/* </Link> */}
         </form>
       </div>
     );

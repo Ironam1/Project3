@@ -13,12 +13,9 @@ module.exports = {
         date: req.query.date
       },
       function(err, found) {
-        // Log any errors if the server encounters one
         if (err) {
           console.log(err);
-        }
-        // Otherwise, send the result of this query to the browser
-        else {
+        } else {
           res.json(found);
         }
       }

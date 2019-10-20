@@ -8,12 +8,10 @@ import API from "../utils/API";
 import Container from "../components/Container/container";
 import NavBar from "../components/NavBar/NavBar";
 
-// const format = "hh:mm a";
-
 class Change extends Component {
   state = {
     user: "connie@mail.com",
-    date: "1999-01-01 05:00:00.000Z",
+    date: moment(),
     value: moment(),
     details: "",
     change: []
@@ -28,7 +26,6 @@ class Change extends Component {
     API.getChange(user)
       .then(res => {
         this.setState({ change: res.data });
-        console.log(res.data);
       })
       .catch(err => console.log("Error" + err));
   };
@@ -51,9 +48,15 @@ class Change extends Component {
     console.log("date: " + this.state.date);
     console.log("time: " + this.state.value.format("hh:mm a"));
     console.log("details: " + this.state.details);
-    // window.location.reload();
-  };
 
+    window.location.reload();
+  };
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
+  };
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -66,9 +69,9 @@ class Change extends Component {
       <div className="container">
         <NavBar />
         <h2>Change Me</h2>
-        <DatePicker />
+        <DatePicker onDateChange={this.DateChange} />
         <p></p>
-        <Timer />
+        <Timer onTimeChange={this.handleTimeChange} />
 
         <div className="input-group">
           <div className="input-group-prepend">
