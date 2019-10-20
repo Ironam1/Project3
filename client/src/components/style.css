@@ -8,14 +8,15 @@ html, body {
     background-color: #DEC8AA;
     background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
     height: 100%;
+    width: 100%;
 }
 
 
 .btn {
     background-color: #2C2827;
     border: 1px solid #71B7AA;
-    margin-bottom: 20px;
-}
+    margin-bottom: 20px; 
+    }
 
 .btn:hover {
     background-color: #71B7AA;
@@ -59,7 +60,10 @@ label {
 .navbutton {
     margin: 20px 10px;
     width: 200px;
+}
 
+.main {
+    width: 100%;
 }
 
 @media (max-width: 575.98px) {  

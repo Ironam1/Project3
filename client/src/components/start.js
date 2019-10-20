@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Start() {
   return (
-    <div className="container">
+    <div className="main">
       <h2>Welcome!</h2>
 
       <Link to="/eat" className={window.location.pathname === "/eat"}>
