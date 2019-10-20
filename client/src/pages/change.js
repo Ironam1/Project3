@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Change extends Component {
   state = {
     user: "connie@mail.com",
-    date: "",
+    date: moment(),
     value: moment(),
     details: "",
     change: []

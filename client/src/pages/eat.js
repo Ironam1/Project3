@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Eat extends Component {
   state = {
     user: "connie@mail.com",
-    date: "",
+    date: moment(),
     value: moment(),
     details: "",
     feed: []
@@ -54,7 +54,6 @@ class Eat extends Component {
   };
 
   handleTimeChange = timeValue => {
-  
     this.setState({ value: timeValue });
   };
 
