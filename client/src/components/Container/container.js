@@ -5,6 +5,7 @@ class Container extends Component {
   renderItems() {
     return this.props.itemList.map(item => (
       <div className="item" key={item._id}>
+        {/* <p>Date: {item.date}</p> */}
         <p>Time: {item.time}</p>
         <p>Details: {item.details}</p>
       </div>

@@ -19,8 +19,9 @@ class Eat extends Component {
 
   componentDidMount = () => {
     const user = {
-      user: this.state.user,
-      date: this.state.date
+      // currently only renders log with hardcoded data in user & date and will only display the dates like below.
+      user: "connie@mail.com",
+      date: "1999-01-01 05:00:00.000Z"
     };
 
     API.getFeed(user)
@@ -41,7 +42,7 @@ class Eat extends Component {
     API.postFeed({
       user: this.state.user,
       date: this.state.date,
-      time: this.state.value.format("hh:mm a"),
+      time: this.state.value.format("lll"),
       details: this.state.details
     }).then(res =>
       this.setState({

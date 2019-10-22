@@ -16,7 +16,7 @@ class Timer extends Component {
   }
 
   handleValueChange = value => {
-
+    console.log(value.format('lll'));
     this.setState(
       {
         value: value
@@ -36,9 +36,7 @@ class Timer extends Component {
         format={format}
         use12Hours
         inputReadOnly
-        id="timepicker"
-        value={value}
-      
+        id="timepicker"      
       />
     );
   }
