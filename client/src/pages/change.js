@@ -41,10 +41,13 @@ class Change extends Component {
     }).then(res =>
       this.setState({
         date: res.data,
-        value: res.data,
+        value: "",
         details: ""
       })
     );
+    console.log("date: " + this.state.date);
+    console.log("time: " + this.state.value.format("hh:mm a"));
+    console.log("details: " + this.state.details);
 
     window.location.reload();
   };
@@ -91,7 +94,8 @@ class Change extends Component {
           Save
         </button>
 
-        <Container itemList={this.state.change} title="Changes"></Container>
+        <Container itemList={this.state.change} title="Changes">
+        </Container>
       </div>
     );
   }

@@ -51,7 +51,7 @@ class Sleep extends Component {
       })
     );
 
-    window.location.reload();
+    // window.location.reload();
   };
   handleTimeChange = timeValue => {
     this.setState({ value1: timeValue });
