@@ -14,13 +14,25 @@ const format = "h:mm a";
 class Sleep extends Component {
   state = {
     user: "connie@mail.com",
-    date: "1999-01-01 05:00:00.000Z",
+    date: "",
     value1: moment(),
     value2: moment(),
     details: "",
     sleep: []
   };
 
+  handleTimeChange = timeValue => {
+    this.setState({ value1: timeValue });
+  };
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
   componentDidMount = () => {
     const user = {
       user: this.state.user,
@@ -52,18 +64,6 @@ class Sleep extends Component {
     );
 
     window.location.reload();
-  };
-  handleTimeChange = timeValue => {
-    this.setState({ value1: timeValue });
-  };
-  DateChange = dateNow => {
-    this.setState({ date: dateNow });
-  };
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render(props) {
