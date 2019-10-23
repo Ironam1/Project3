@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 function Start() {
   return (
-    <div className="container">
-      <h2>Welcome!</h2>
+    <div className="main">
+      <h2 id="welcome">Welcome!</h2>
 
       <Link to="/eat" className={window.location.pathname === "/eat"}>
         <button type="button" className="btn btn-info navbutton" id="eat">

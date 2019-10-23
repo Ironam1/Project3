@@ -24,15 +24,18 @@ class Sleep extends Component {
   handleTimeChange = timeValue => {
     this.setState({ value1: timeValue });
   };
+
   DateChange = dateNow => {
     this.setState({ date: dateNow });
   };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
+
   componentDidMount = () => {
     const user = {
       user: this.state.user,

@@ -17,6 +17,21 @@ class Change extends Component {
     change: []
   };
 
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
+  };
+
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   componentDidMount = () => {
     const user = {
       user: this.state.user,
@@ -41,24 +56,12 @@ class Change extends Component {
     }).then(res =>
       this.setState({
         date: res.data,
-        value: res.data,
+        value: "",
         details: ""
       })
     );
 
     window.location.reload();
-  };
-  handleTimeChange = timeValue => {
-    this.setState({ value: timeValue });
-  };
-  DateChange = dateNow => {
-    this.setState({ date: dateNow });
-  };
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render() {
