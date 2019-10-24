@@ -20,7 +20,7 @@ class Timer2 extends Component {
       {
         value: value
       },
-      () => this.props.onTimeChange(this.state.value)
+      () => this.props.onTimeChange2(this.state.value)
     );
   };
 
