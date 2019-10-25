@@ -11,10 +11,25 @@ import NavBar from "../components/NavBar/NavBar";
 class Change extends Component {
   state = {
     user: "connie@mail.com",
-    date: moment(),
+    date: "",
     value: moment(),
     details: "",
     change: []
+  };
+
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
+  };
+
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   componentDidMount = () => {
@@ -45,23 +60,8 @@ class Change extends Component {
         details: ""
       })
     );
-    console.log("date: " + this.state.date);
-    console.log("time: " + this.state.value.format("hh:mm a"));
-    console.log("details: " + this.state.details);
 
     window.location.reload();
-  };
-  handleTimeChange = timeValue => {
-    this.setState({ value: timeValue });
-  };
-  DateChange = dateNow => {
-    this.setState({ date: dateNow });
-  };
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render() {
@@ -94,8 +94,7 @@ class Change extends Component {
           Save
         </button>
 
-        <Container itemList={this.state.change} title="Changes">
-        </Container>
+        <Container itemList={this.state.change} title="Changes"></Container>
       </div>
     );
   }

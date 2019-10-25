@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Eat extends Component {
   state = {
     user: "connie@mail.com",
-    date: moment(),
+    date: "",
     value: moment(),
     details: "",
     feed: []
@@ -29,12 +29,22 @@ class Eat extends Component {
       })
       .catch(err => console.log("Error" + err));
   };
+
   handleTimeChange = timeValue => {
     this.setState({ value: timeValue });
   };
+
   DateChange = dateNow => {
     this.setState({ date: dateNow });
   };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
 
@@ -51,17 +61,6 @@ class Eat extends Component {
     );
 
     window.location.reload();
-  };
-
-  handleTimeChange = timeValue => {
-    this.setState({ value: timeValue });
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render() {

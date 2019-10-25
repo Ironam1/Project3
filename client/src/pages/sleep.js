@@ -5,6 +5,7 @@ import moment from "moment";
 // import TimePicker from "rc-time-picker";
 import DatePicker from "../components/DatePicker";
 import Timer from "../components/TimePicker";
+import Timer2 from "../components/TimePicker2"
 import API from "../utils/API";
 import SleepContainer from "../components/SleepContainer/sleepContainer";
 import NavBar from "../components/NavBar/NavBar";
@@ -14,11 +15,30 @@ const format = "h:mm a";
 class Sleep extends Component {
   state = {
     user: "connie@mail.com",
-    date: "1999-01-01 05:00:00.000Z",
+    date: "",
     value1: moment(),
     value2: moment(),
     details: "",
     sleep: []
+  };
+
+  handleTimeChange = timeValue => {
+    this.setState({ value1: timeValue });
+  };
+
+  handleTimeChange2 = timeValue => {
+    this.setState({ value2: timeValue });
+  };
+
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   componentDidMount = () => {
@@ -51,19 +71,7 @@ class Sleep extends Component {
       })
     );
 
-    // window.location.reload();
-  };
-  handleTimeChange = timeValue => {
-    this.setState({ value1: timeValue });
-  };
-  DateChange = dateNow => {
-    this.setState({ date: dateNow });
-  };
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    window.location.reload();
   };
 
   render(props) {
@@ -79,7 +87,7 @@ class Sleep extends Component {
         <h6>to</h6>
 
         <h6>Awake</h6>
-        <Timer onTimeChange={this.handleTimeChange} />
+        <Timer2 onTimeChange2={this.handleTimeChange2} />
 
         <div className="input-group">
           <div className="input-group-prepend">
