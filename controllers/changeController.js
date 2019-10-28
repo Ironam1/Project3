@@ -10,7 +10,7 @@ module.exports = {
     db.Change.find(
       {
         user: req.query.user,
-        date: req.query.date
+        // date: req.query.date
       },
       function(err, found) {
         if (err) {

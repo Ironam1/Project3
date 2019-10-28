@@ -11,17 +11,32 @@ import NavBar from "../components/NavBar/NavBar";
 class Change extends Component {
   state = {
     user: "connie@mail.com",
-    date: moment(),
+    date: new Date(),
     value: moment(),
     details: "",
     change: []
+  };
+
+  handleTimeChange = timeValue => {
+    this.setState({ value: timeValue });
+  };
+
+  DateChange = dateNow => {
+    this.setState({ date: dateNow });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   componentDidMount = () => {
     const user = {
       // currently only renders log with hardcoded data in user & date and will only display the dates like below.
       user: "connie@mail.com",
-      date: "1999-01-01 05:00:00.000Z"
+      // date: "1999-01-01 05:00:00.000Z"
     };
 
     API.getChange(user)
@@ -46,23 +61,8 @@ class Change extends Component {
         details: ""
       })
     );
-    console.log("date: " + this.state.date);
-    console.log("time: " + this.state.value.format("hh:mm a"));
-    console.log("details: " + this.state.details);
 
     window.location.reload();
-  };
-  handleTimeChange = timeValue => {
-    this.setState({ value: timeValue });
-  };
-  DateChange = dateNow => {
-    this.setState({ date: dateNow });
-  };
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render() {
@@ -95,8 +95,7 @@ class Change extends Component {
           Save
         </button>
 
-        <Container itemList={this.state.change} title="Changes">
-        </Container>
+        <Container itemList={this.state.change} title="Changes"></Container>
       </div>
     );
   }

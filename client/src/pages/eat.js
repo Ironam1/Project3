@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Eat extends Component {
   state = {
     user: "connie@mail.com",
-    date: moment(),
+    date: new Date(),
     value: moment(),
     details: "",
     feed: []
@@ -21,7 +21,6 @@ class Eat extends Component {
     const user = {
       // currently only renders log with hardcoded data in user & date and will only display the dates like below.
       user: "connie@mail.com",
-      date: "1999-01-01 05:00:00.000Z"
     };
 
     API.getFeed(user)
@@ -30,19 +29,29 @@ class Eat extends Component {
       })
       .catch(err => console.log("Error" + err));
   };
+
   handleTimeChange = timeValue => {
     this.setState({ value: timeValue });
   };
+
   DateChange = dateNow => {
     this.setState({ date: dateNow });
   };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
 
     API.postFeed({
       user: this.state.user,
       date: this.state.date,
-      time: this.state.value.format("lll"),
+      time: this.state.value.format("hh:mm a"),
       details: this.state.details
     }).then(res =>
       this.setState({
@@ -52,17 +61,6 @@ class Eat extends Component {
     );
 
     window.location.reload();
-  };
-
-  handleTimeChange = timeValue => {
-    this.setState({ value: timeValue });
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   render() {
