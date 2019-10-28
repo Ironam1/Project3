@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Eat extends Component {
   state = {
     user: "connie@mail.com",
-    date: "",
+    date: new Date(),
     value: moment(),
     details: "",
     feed: []
@@ -19,8 +19,8 @@ class Eat extends Component {
 
   componentDidMount = () => {
     const user = {
-      user: this.state.user,
-      date: this.state.date
+      // currently only renders log with hardcoded data in user & date and will only display the dates like below.
+      user: "connie@mail.com",
     };
 
     API.getFeed(user)

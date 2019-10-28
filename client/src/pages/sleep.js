@@ -10,12 +10,11 @@ import API from "../utils/API";
 import SleepContainer from "../components/SleepContainer/sleepContainer";
 import NavBar from "../components/NavBar/NavBar";
 
-const format = "h:mm a";
 
 class Sleep extends Component {
   state = {
     user: "connie@mail.com",
-    date: "",
+    date: new Date(),
     value1: moment(),
     value2: moment(),
     details: "",
@@ -43,8 +42,8 @@ class Sleep extends Component {
 
   componentDidMount = () => {
     const user = {
-      user: this.state.user,
-      date: this.state.date
+      user: "connie@mail.com"
+      // date: this.state.date
     };
 
     API.getSleep(user)
@@ -60,8 +59,8 @@ class Sleep extends Component {
     API.postSleep({
       user: this.state.user,
       date: this.state.date,
-      starttime: this.state.value1.format(format),
-      endtime: this.state.value2.format(format),
+      starttime: this.state.value1.format("hh:mm a"),
+      endtime: this.state.value2.format("hh:mm a"),
       details: this.state.details
     }).then(res =>
       this.setState({
@@ -74,7 +73,7 @@ class Sleep extends Component {
     window.location.reload();
   };
 
-  render(props) {
+  render() {
     return (
       <div className="container">
         <NavBar />

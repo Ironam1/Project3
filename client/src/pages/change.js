@@ -11,7 +11,7 @@ import NavBar from "../components/NavBar/NavBar";
 class Change extends Component {
   state = {
     user: "connie@mail.com",
-    date: "",
+    date: new Date(),
     value: moment(),
     details: "",
     change: []
@@ -34,8 +34,9 @@ class Change extends Component {
 
   componentDidMount = () => {
     const user = {
-      user: this.state.user,
-      date: this.state.date
+      // currently only renders log with hardcoded data in user & date and will only display the dates like below.
+      user: "connie@mail.com",
+      // date: "1999-01-01 05:00:00.000Z"
     };
 
     API.getChange(user)

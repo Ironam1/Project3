@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import "./style.css";
+import moment from "moment";
+
 
 class SleepContainer extends Component {
   renderItems() {
     return this.props.itemList.map(item => (
       <div className="item" key={item._id}>
+        <p>Date: {moment(item.date).format("MM/DD/YY")}</p>
         <p>Start Time: {item.starttime}</p>
         <p>End Time: {item.endtime}</p>
         <p>Details: {item.details}</p>

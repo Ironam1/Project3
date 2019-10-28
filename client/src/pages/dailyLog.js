@@ -9,7 +9,7 @@ import SleepContainer from "../components/SleepContainer/sleepContainer";
 class DailyLog extends Component {
   state = {
     user: "connie@mail.com",
-    date: "1999-01-01 05:00:00.000Z",
+    date: new Date(),
     feed: [],
     sleep: [],
     change: []
@@ -18,7 +18,7 @@ class DailyLog extends Component {
   componentDidMount = () => {
     const user = {
       user: this.state.user,
-      date: this.state.date
+      // date: this.state.date
     };
 
     API.getFeed(user)

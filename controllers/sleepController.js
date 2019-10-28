@@ -11,7 +11,7 @@ module.exports = {
     db.Sleep.find(
       {
         user: req.query.user,
-        date: req.query.date
+        // date: req.query.date
       },
       function(err, found) {
         if (err) {
