@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
@@ -12,6 +12,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger("dev"));
 
+// Initialize Passport
+const passport = require("passport");
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/success", (req, res) => res.send("welcome" + req.query.username));
+app.get("/error", (req, res) => res.senf("error loggin in"));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user, id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  User.findById(id, function(err, user) {
+    cb(err, user);
+  });
+});
+
 // Require database
 const mongoose = require("mongoose");
 
@@ -24,7 +42,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose
-.connect(process.env.MONGODB_URI || "mongodb://localhost/babytracker", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/babytracker", {
     useNewUrlParser: true,
     useCreateIndex: true
   })
